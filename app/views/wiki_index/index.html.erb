@@ -1,0 +1,6 @@
+<h1>Wiki Index</h1>
+
+<% @wikis.each do |wiki| %>
+<%= link_to wiki.name, "/projects/"+ wiki.identifier + "/" + wiki.start_page.downcase %>
+<br>
+<% end %>
