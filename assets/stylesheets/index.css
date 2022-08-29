@@ -1,0 +1,56 @@
+.project-title {font-size: 20px;}
+.wiki-index {margin-top: 20px;}
+.wiki-project {float: left; margin-right: 15px;}
+.wiki-pages {
+    margin-left: 15px;
+    padding-top: 5px;
+}
+input[type='checkbox'] {
+    display: none;
+}
+
+.lbl-toggle {
+    display: block;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+}
+
+.lbl-toggle:hover {
+    color: rgb(158, 157, 157);
+}
+
+.lbl-toggle::before {
+    content: ' ';
+    display: inline-block;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+    vertical-align: middle;
+    margin-right: .7rem;
+    transform: translateY(-2px);
+    transition: transform .2s ease-out;
+}
+
+.toggle:checked+.lbl-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked+.lbl-toggle+.collapsible-content {
+    max-height: 100vh;
+}
+
+.toggle:checked+.lbl-toggle {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.collapsible-content p {
+    margin-bottom: 0;
+}
