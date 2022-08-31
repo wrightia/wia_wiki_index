@@ -12,11 +12,14 @@ class WikiIndexController < ApplicationController
       result = []
       wikis = Wiki.joins(:project).select('wikis.*, projects.name, projects.identifier, projects.status').where('projects.status not in (?)', [5,9])
       wikis.each do |wiki|
-        page_count = WikiPage.where("wiki_id = ?", wiki.id).count
-        if page_count > 0
-          wiki = wiki.attributes
-          wiki['num_pages'] = page_count
-          result << wiki
+        project = Project.where('identifier = ?', wiki.identifier).first
+        if project && project.id && User.current.logged? && User.current.allowed_to?(:view_project, project)
+          page_count = WikiPage.where("wiki_id = ?", wiki.id).count
+          if page_count > 0
+            wiki = wiki.attributes
+            wiki['num_pages'] = page_count
+            result << wiki
+          end
         end
       end
       result
