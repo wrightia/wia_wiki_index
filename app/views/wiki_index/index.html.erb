@@ -5,7 +5,7 @@
     <% @wikis.each do |wiki| %>
         <div class="wrap-collabsible">
             <input id=<%= 'collapsible' + @count_id.to_s%> class="toggle" type="checkbox">
-            <label for=<%= 'collapsible' + @count_id.to_s%> class="lbl-toggle"><%= link_to wiki["name"], "/projects/"+ wiki["identifier"] + "/" + wiki["start_page"].downcase, class: "project-title" %> (<%= wiki["num_pages"].to_s %> pg.)</label> 
+            <label for=<%= 'collapsible' + @count_id.to_s%> class="lbl-toggle"><%= link_to wiki["name"], "/projects/"+ wiki["identifier"] + "/" + (wiki["start_page"] == 'Wiki' ? wiki["start_page"].downcase : 'wiki' + wiki["start_page"]), class: "project-title" %> (<%= wiki["num_pages"].to_s %> pg.)</label> 
             
             <div class="collapsible-content">
                 <div class="content-inner">
