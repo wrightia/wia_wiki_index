@@ -13,7 +13,7 @@ class WikiIndexController < ApplicationController
       wikis = Wiki.joins(:project).select('wikis.*, projects.name, projects.identifier, projects.status').where('projects.status not in (?)', [5,9])
       wikis.each do |wiki|
         project = Project.where('identifier = ?', wiki.identifier).first
-        if project && project.id && User.current.logged? && User.current.allowed_to?(:view_project, project)
+        if project && project.id && User.current.logged? && User.current.allowed_to?(:view_project, project) && !(EnabledModule.where('project_id = ? and name = ?', project.id, 'wiki').first.nil?)
           page_count = WikiPage.where("wiki_id = ?", wiki.id).count
           if page_count > 0
             wiki = wiki.attributes
