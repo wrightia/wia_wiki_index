@@ -5,7 +5,6 @@ class WikiIndexController < ApplicationController
   def index
     @user = User.current
     @projects = get_projects_with_wiki
-    @my_logger.info("Projects - " + @projects.inspect)
     render :index, status: :ok
   end
 
