@@ -1,21 +1,6 @@
 <%= stylesheet_link_tag 'index', :plugin => "wia_wiki_index" %>
 <h1>Wikis</h1>
-<div class="wiki-index">
-    <% @count_id = 1 %>
-    <% @wikis.each do |wiki| %>
-        <div class="wrap-collabsible">
-            <input id=<%= 'collapsible' + @count_id.to_s%> class="toggle" type="checkbox">
-            <label for=<%= 'collapsible' + @count_id.to_s%> class="lbl-toggle"><%= link_to wiki["name"], "/projects/"+ wiki["identifier"] + "/" + (wiki["start_page"] == 'Wiki' ? wiki["start_page"].downcase : 'wiki' + "/" + wiki["start_page"]), class: "project-title" %> (<%= wiki["num_pages"].to_s %> pg.)</label> 
-            
-            <div class="collapsible-content">
-                <div class="content-inner">
-                    <% find_wiki(wiki["project_id"])%>
-                    <% load_pages_for_index %>
-                    <%= render_page_hierarchy(@pages_by_parent_id, nil, :timestamp => true) %>
-                </div>
-            </div>
-        </div>
-        <br>
-        <% @count_id += 1 %>
-    <% end %>
+
+<div id="projects-index">
+  <%= render_wiki_hierarchy(@projects) %>
 </div>

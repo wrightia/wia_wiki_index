@@ -22,4 +22,15 @@ module WikiIndexHelper
     render_404
   end
 
+  def render_wiki_hierarchy(projects)
+    bookmarked_project_ids = User.current.bookmarked_project_ids
+    render_project_nested_lists(projects) do |project|
+      classes = project.css_classes.split
+      classes += %w(icon icon-user my-project) if User.current.member_of?(project)
+      classes += %w(icon icon-bookmarked-project) if bookmarked_project_ids.include?(project.id)
+      s = link_to_project(project, {}, :class => classes.uniq.join(' '))
+      s
+    end
+  end
+
 end
