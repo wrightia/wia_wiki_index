@@ -1,16 +1,4 @@
 module WikiIndexHelper
-  def load_pages_for_index
-    @pages = @wiki.pages.with_updated_on.
-              includes(:wiki => :project).
-              includes(:parent).
-              to_a
-
-    @pages_by_parent_id = @pages.group_by(&:parent_id)
-    @my_logger.info('pages')
-    @my_logger.info(@pages)
-
-  end
-
   def render_wiki_hierarchy(projects)
     bookmarked_project_ids = User.current.bookmarked_project_ids
     render_project_nested_lists(projects) do |project|
@@ -32,7 +20,6 @@ module WikiIndexHelper
 
   def wiki_url(project, options, html_options)
     wiki = Wiki.joins(:project).select('wikis.*, projects.name, projects.identifier, projects.status').where('projects.status not in (?) and wikis.project_id = ?', [5,9], project.id.to_i).first
-    @my_logger.info("******************** - " + wiki.inspect)
     link_to wiki["name"], "/projects/"+ wiki["identifier"] + "/" + (wiki["start_page"] == 'Wiki' ? wiki["start_page"].downcase : 'wiki' + "/" + wiki["start_page"]), class: "project-title" 
   end
 end
