@@ -2,7 +2,7 @@ Redmine::Plugin.register :wia_wiki_index do
   name 'Wia Wiki Index plugin'
   author 'Author name'
   description 'This is a plugin that adds a wiki index on the top main menu'
-  version '0.0.6'
+  version '0.0.7'
   url 'https://www.wrightia.com'
   author_url 'https://www.wrightia.com'
 

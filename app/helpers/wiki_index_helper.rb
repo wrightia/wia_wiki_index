@@ -20,6 +20,10 @@ module WikiIndexHelper
 
   def wiki_url(project, options, html_options)
     wiki = Wiki.joins(:project).select('wikis.*, projects.name, projects.identifier, projects.status').where('projects.status not in (?) and wikis.project_id = ?', [5,9], project.id.to_i).first
-    link_to wiki["name"], "/projects/"+ wiki["identifier"] + "/" + (wiki["start_page"] == 'Wiki' ? wiki["start_page"].downcase : 'wiki' + "/" + wiki["start_page"]), class: "project-title" 
+    if !wiki.nil?
+      link_to wiki["name"], "/projects/"+ wiki["identifier"] + "/" + (wiki["start_page"] == 'Wiki' ? wiki["start_page"].downcase : 'wiki' + "/" + wiki["start_page"]), class: "project-title" 
+    else
+      project["name"]
+    end
   end
 end

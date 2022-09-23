@@ -1,4 +1,5 @@
-.project-title {font-size: 20px;}
+.project-title, div.child, div.root {font-size: 20px;}
+#header {display: none;}
 .wiki-index {margin-top: 20px;}
 .wiki-project {float: left; margin-right: 15px;}
 .wiki-pages {

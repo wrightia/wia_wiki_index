@@ -16,6 +16,10 @@ class WikiIndexController < ApplicationController
         if project && project.id && User.current.logged? && User.current.allowed_to?(:view_project, project) && !(EnabledModule.where('project_id = ? and name = ?', project.id, 'wiki').first.nil?)
           page_count = WikiPage.where("wiki_id = ?", wiki.id).count
           if page_count > 0
+            if ((Project.find(wiki.project_id).parent_id) != nil)
+              projects_list << Project.find(Project.find(wiki.project_id).parent_id).id
+            end
+
             projects_list << wiki.project_id
           end
         end
