@@ -1,6 +1,5 @@
 .project-title, div.child, div.root {font-size: 20px;}
-#header>h1 {display: none;}
-#quick-search {padding-bottom: 12px;}
+#main-menu>ul, #main-menu>div>button.tab-left, #main-menu>div>button.tab-right {display: none;}
 .wiki-index {margin-top: 20px;}
 .wiki-project {float: left; margin-right: 15px;}
 .wiki-pages {
