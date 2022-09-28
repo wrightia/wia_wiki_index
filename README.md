@@ -1,6 +1,8 @@
 ### Description
 
-This plugin adds a wiki index on the top main menu.
+This plugin adds in the top menu an option named wiki that lists all projects wikis in a similar way the projects are listed.
+
+For child projects that have wikis even if the parent project does not have one, it would be listed to maintain the correct hierarchy.
 
 ### Installation:
 
